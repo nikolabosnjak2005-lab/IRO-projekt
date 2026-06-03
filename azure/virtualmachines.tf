@@ -124,7 +124,7 @@ resource "azurerm_linux_virtual_machine" "moodle_vm" {
   name                = "vm-moodle-${each.key}-testing"
   resource_group_name = azurerm_resource_group.developer_rg["${each.value.dev.ime}-${each.value.dev.prezime}"].name
   location            = var.location
-  size                = "Standard_B2s"
+  size                = "Standard_B1s"
   admin_username      = "azureuser"
 
   network_interface_ids = [
@@ -167,12 +167,12 @@ resource "azurerm_managed_disk" "moodle_data_disk" {
     ]) : pair.key => pair
   }
 
-  name                = "disk-${each.key}-testing"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.developer_rg["${each.value.dev.ime}-${each.value.dev.prezime}"].name
+  name                 = "disk-${each.key}-testing"
+  location             = var.location
+  resource_group_name  = azurerm_resource_group.developer_rg["${each.value.dev.ime}-${each.value.dev.prezime}"].name
   storage_account_type = "Standard_LRS"
-  create_option       = "Empty"
-  disk_size_gb        = 32
+  create_option        = "Empty"
+  disk_size_gb         = 32
 
   tags = {
     project     = var.project_tag
