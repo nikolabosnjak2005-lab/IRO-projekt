@@ -1,6 +1,6 @@
 variable "location" {
   description = "Azure regija"
-  default     = "West Europe"
+  default     = "eastus"
 }
 
 variable "project_tag" {
